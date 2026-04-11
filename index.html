@@ -1,123 +1,607 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FFC Pizza Restaurant</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            background-color: #1a1a1a;
-            color: #f0f0f0;
-            font-family: Arial, sans-serif;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FFC - Framan Fried Chicken | Lahore</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --red: #dc2626;
+      --red-dark: #b91c1c;
+      --yellow: #fbbf24;
+      --dark: #0f0f0f;
+      --dark2: #1a1a1a;
+      --dark3: #242424;
+      --gray: #9ca3af;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Nunito', sans-serif; background: var(--dark); color: white; }
 
-        header {
-            background: #1a1a1a;
-            padding: 20px;
-            text-align: center;
-        }
+    /* OWNER BANNER */
+    .owner-bar {
+      background: var(--yellow);
+      color: #000;
+      text-align: center;
+      padding: 7px 16px;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+    .owner-bar span { color: var(--red-dark); }
 
-        .menu, .offers, .gallery, .about, .contact {
-            padding: 20px;
-            margin: 10px auto;
-            max-width: 800px;
-            border-radius: 8px;
-        }
+    /* NAV */
+    nav {
+      background: var(--red);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .nav-logo .badge {
+      background: var(--yellow);
+      color: var(--red-dark);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px;
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .nav-logo .brand { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; }
+    .nav-links { display: flex; gap: 24px; font-size: 13px; font-weight: 700; }
+    .nav-links a { color: rgba(255,255,255,0.9); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--yellow); }
+    .nav-order {
+      background: #16a34a;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 13px;
+      text-decoration: none;
+      display: flex; align-items: center; gap-8px;
+      gap: 8px;
+      transition: background 0.2s;
+    }
+    .nav-order:hover { background: #15803d; }
 
-        .menu-item, .offer {
-            margin: 10px 0;
-        }
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.7)),
+        url('https://images.unsplash.com/photo-1513639776629-7b61b0ac49cb?w=1600&q=85') center/cover no-repeat;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 60px 24px;
+      position: relative;
+    }
+    .hero-content { max-width: 860px; }
+    .hero-tag {
+      display: inline-block;
+      background: var(--yellow);
+      color: #000;
+      font-weight: 900;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 18px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(52px, 10vw, 96px);
+      line-height: 1;
+      margin-bottom: 14px;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.6);
+    }
+    .hero h1 span { color: var(--yellow); }
+    .hero p {
+      font-size: clamp(15px, 2.5vw, 20px);
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 32px;
+      font-weight: 600;
+    }
+    .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 28px; }
+    .btn-red {
+      background: var(--red);
+      color: white;
+      padding: 14px 30px;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 15px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-red:hover { background: var(--red-dark); transform: translateY(-2px); }
+    .btn-wa {
+      background: white;
+      color: var(--red-dark);
+      padding: 14px 30px;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 15px;
+      text-decoration: none;
+      display: flex; align-items: center; gap: 8px;
+      transition: transform 0.15s;
+    }
+    .btn-wa:hover { transform: translateY(-2px); }
+    .hero-meta { color: rgba(255,255,255,0.65); font-size: 13px; font-weight: 700; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+    .hero-meta span { display: flex; align-items: center; gap: 6px; }
 
-        .gallery img {
-            width: calc(25% - 10px);
-            margin: 5px;
-            border-radius: 8px;
-        }
+    /* SECTION HEADER */
+    .sec-head { text-align: center; margin-bottom: 48px; }
+    .sec-head h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 6vw, 56px); letter-spacing: 1px; }
+    .sec-head h2 span { color: var(--red); }
+    .sec-head p { color: var(--gray); font-size: 14px; margin-top: 6px; font-weight: 600; }
+    .sec-divider { width: 50px; height: 3px; background: var(--red); margin: 12px auto 0; border-radius: 2px; }
 
-        .floating-whatsapp {
-            position: fixed;
-            bottom: 10px;
-            right: 10px;
-            width: 60px;
-            height: 60px;
-            background-color: #25D366;
-            color: white;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 60px;
-            font-size: 30px;
-        }
+    /* MENU */
+    .menu-section { padding: 80px 24px; background: var(--dark2); }
+    .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
+    .menu-card {
+      background: var(--dark3);
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .menu-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+    .menu-card img { width: 100%; height: 200px; object-fit: cover; }
+    .menu-card-body { padding: 18px; }
+    .menu-card-body h3 { font-size: 18px; font-weight: 800; margin-bottom: 6px; }
+    .menu-card-body .price { color: var(--yellow); font-size: 22px; font-weight: 900; font-family: 'Bebas Neue', sans-serif; letter-spacing: 1px; }
+    .menu-card-body p { color: var(--gray); font-size: 12px; margin-top: 6px; font-weight: 600; line-height: 1.5; }
+    .menu-card-body .order-link {
+      display: inline-block;
+      margin-top: 12px;
+      background: #16a34a;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 800;
+      text-decoration: none;
+    }
 
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            max-width: 300px;
-            margin: auto;
-        }
+    /* OFFERS */
+    .offers-section { padding: 80px 24px; background: var(--red); }
+    .offers-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; max-width: 1000px; margin: 0 auto; }
+    .offer-card {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 20px;
+      padding: 28px 22px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+    .offer-card h3 { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
+    .offer-card .amount { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: var(--yellow); line-height: 1; margin: 10px 0; }
+    .offer-card p { font-size: 13px; opacity: 0.85; font-weight: 600; line-height: 1.5; }
 
-        .contact-form input, .contact-form button {
-            margin: 5px 0;
-        }
-    </style>
+    /* GALLERY */
+    .gallery-section { padding: 80px 24px; background: var(--dark); }
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; max-width: 1200px; margin: 0 auto; }
+    .gallery-grid img {
+      width: 100%; height: 220px; object-fit: cover;
+      border-radius: 14px;
+      transition: transform 0.3s, filter 0.3s;
+      filter: brightness(0.85);
+    }
+    .gallery-grid img:hover { transform: scale(1.04); filter: brightness(1); }
+
+    /* ABOUT */
+    .about-section { padding: 80px 24px; background: var(--dark2); }
+    .about-inner { max-width: 800px; margin: 0 auto; text-align: center; }
+    .about-inner p { font-size: 17px; color: var(--gray); line-height: 1.9; font-weight: 600; }
+    .about-stats { display: flex; justify-content: center; gap: 48px; margin-top: 40px; flex-wrap: wrap; }
+    .stat-item { text-align: center; }
+    .stat-item .num { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: var(--yellow); line-height: 1; }
+    .stat-item .label { font-size: 12px; color: var(--gray); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+
+    /* CONTACT */
+    .contact-section { padding: 80px 24px; background: var(--dark3); }
+    .contact-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    @media(max-width: 700px) { .contact-inner { grid-template-columns: 1fr; } .nav-links { display: none; } }
+    .contact-info h2 { font-family: 'Bebas Neue', sans-serif; font-size: 42px; margin-bottom: 28px; line-height: 1.1; }
+    .info-row { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 24px; }
+    .info-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+    .icon-red-bg { background: rgba(220,38,38,0.15); color: var(--red); }
+    .icon-green-bg { background: rgba(22,163,74,0.15); color: #16a34a; }
+    .icon-yellow-bg { background: rgba(251,191,36,0.15); color: var(--yellow); }
+    .icon-blue-bg { background: rgba(59,130,246,0.15); color: #60a5fa; }
+    .info-text p:first-child { font-weight: 800; font-size: 14px; margin-bottom: 3px; }
+    .info-text p:last-child, .info-text a { color: var(--gray); font-size: 13px; font-weight: 600; text-decoration: none; }
+    .info-text a:hover { color: white; }
+
+    /* ORDER FORM */
+    .order-form { background: var(--dark2); border-radius: 20px; padding: 32px; border: 1px solid rgba(255,255,255,0.06); }
+    .order-form h3 { font-family: 'Bebas Neue', sans-serif; font-size: 32px; margin-bottom: 6px; }
+    .order-form .sub { font-size: 12px; color: var(--gray); font-weight: 700; margin-bottom: 24px; }
+    .form-group { margin-bottom: 14px; }
+    .form-group label { display: block; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--gray); margin-bottom: 6px; }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      background: var(--dark3);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 14px;
+      color: white;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 600;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus { border-color: var(--red); }
+    .form-group textarea { height: 90px; resize: none; }
+    .form-group select option { background: var(--dark3); }
+    .form-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 6px; }
+    .btn-wa-form, .btn-email-form {
+      padding: 13px;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 13px;
+      border: none;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 7px;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+    .btn-wa-form { background: #16a34a; color: white; }
+    .btn-email-form { background: #2563eb; color: white; }
+    .btn-wa-form:hover, .btn-email-form:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    /* FOOTER */
+    footer { background: #000; padding: 28px 24px; text-align: center; color: var(--gray); font-size: 13px; font-weight: 600; }
+    footer a { color: var(--yellow); text-decoration: none; }
+    footer .footer-top { margin-bottom: 10px; font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: white; letter-spacing: 1px; }
+
+    /* FLOATING WA */
+    .float-wa {
+      position: fixed;
+      bottom: 24px; right: 24px;
+      background: #16a34a;
+      color: white;
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(22,163,74,0.5);
+      z-index: 200;
+      animation: pulse 2.5s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 4px 20px rgba(22,163,74,0.5); }
+      50% { box-shadow: 0 4px 30px rgba(22,163,74,0.8); }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to FFC Pizza Restaurant</h1>
-    </header>
 
-    <section class="menu">
-        <h2>Our Menu</h2>
-        <div class="menu-item">Margherita Pizza</div>
-        <div class="menu-item">Pepperoni Pizza</div>
-        <div class="menu-item">BBQ Chicken Pizza</div>
-        <div class="menu-item">Vegetarian Pizza</div>
-        <div class="menu-item">Hawaiian Pizza</div>
-        <div class="menu-item">Meat Lovers Pizza</div>
-    </section>
+  <!-- Owner Bar -->
+  <div class="owner-bar">
+    🍗 Owner: <span>Sufyan Raza</span> &nbsp;|&nbsp; Framan Fried Chicken, Lahore &nbsp;|&nbsp; <span>Daily 3:00 PM – 2:00 AM</span>
+  </div>
 
-    <section class="offers">
-        <h2>Special Offers</h2>
-        <div class="offer">Buy 1 Get 1 Free on all pizzas!</div>
-        <div class="offer">20% off on your first order!</div>
-        <div class="offer">Free dessert with orders over $30!</div>
-    </section>
-
-    <section class="gallery">
-        <h2>Our Gallery</h2>
-        <img src="image1.jpg" alt="Pizza 1">
-        <img src="image2.jpg" alt="Pizza 2">
-        <img src="image3.jpg" alt="Pizza 3">
-        <img src="image4.jpg" alt="Pizza 4">
-        <img src="image5.jpg" alt="Pizza 5">
-        <img src="image6.jpg" alt="Pizza 6">
-        <img src="image7.jpg" alt="Pizza 7">
-        <img src="image8.jpg" alt="Pizza 8">
-    </section>
-
-    <section class="about">
-        <h2>About Us</h2>
-        <p>We have been serving delicious pizzas since 1990, with over 1 million satisfied customers.</p>
-    </section>
-
-    <section class="contact">
-        <h2>Contact Us</h2>
-        <form class="contact-form">
-            <input type="email" placeholder="Your Email" required>
-            <button type="submit">Submit</button>
-        </form>
-    </section>
-
-    <div class="floating-whatsapp" onclick="window.open('https://wa.me/your_whatsapp_number')">
-        💬
+  <!-- Navbar -->
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-logo">
+        <div class="badge">FFC</div>
+        <span class="brand">Framan Fried Chicken</span>
+      </div>
+      <div class="nav-links">
+        <a href="#menu">Menu</a>
+        <a href="#offers">Offers</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a href="https://wa.me/923181678758" target="_blank" class="nav-order">
+        <i class="fab fa-whatsapp"></i> Order Now
+      </a>
     </div>
+  </nav>
 
-    <script>
-        document.querySelector('.contact-form').onsubmit = function(event) {
-            event.preventDefault();
-            alert('Form submitted!');
-            // Additional JavaScript functionality for form submission can go here.
-        };
-    </script>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-tag">🔥 Lahore's #1 Fried Chicken</div>
+      <h1>Crispy.<br><span>Juicy.</span><br>Spicy.</h1>
+      <p>Framan Fried Chicken — The Best Fried Chicken in Lahore!</p>
+      <div class="hero-btns">
+        <a href="#menu" class="btn-red">View Menu</a>
+        <a href="https://wa.me/923181678758" target="_blank" class="btn-wa">
+          <i class="fab fa-whatsapp" style="color:#16a34a;font-size:18px;"></i> Order on WhatsApp
+        </a>
+      </div>
+      <div class="hero-meta">
+        <span><i class="fas fa-clock"></i> Daily 3:00 PM – 2:00 AM</span>
+        <span><i class="fas fa-motorcycle"></i> Home Delivery Available</span>
+        <span><i class="fas fa-store"></i> Dine-in & Takeaway</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu -->
+  <section id="menu" class="menu-section">
+    <div class="sec-head">
+      <h2>Our <span>Signature</span> Menu</h2>
+      <div class="sec-divider"></div>
+      <p>Fresh, Crispy & Made to Order Every Time</p>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-card">
+        <img src="https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?w=600&h=400&fit=crop&q=85" alt="Family Bucket">
+        <div class="menu-card-body">
+          <h3>10 Pcs Family Bucket</h3>
+          <div class="price">Rs. 1,899</div>
+          <p>10 Pcs Fried Chicken + Large Fries + Coleslaw + 4 Dips + 1.5L Drink</p>
+          <a href="https://wa.me/923181678758?text=I want to order: 10 Pcs Family Bucket" target="_blank" class="order-link"><i class="fab fa-whatsapp"></i> Order This</a>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&h=400&fit=crop&q=85" alt="Zinger Burger">
+        <div class="menu-card-body">
+          <h3>Zinger Burger</h3>
+          <div class="price">Rs. 599</div>
+          <p>Crispy Chicken Fillet + Cheese + Lettuce + Special Sauce</p>
+          <a href="https://wa.me/923181678758?text=I want to order: Zinger Burger" target="_blank" class="order-link"><i class="fab fa-whatsapp"></i> Order This</a>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img src="https://images.unsplash.com/photo-1562967916-eb82221dfb92?w=600&h=400&fit=crop&q=85" alt="Chicken Strips">
+        <div class="menu-card-body">
+          <h3>Chicken Strips (6 Pcs)</h3>
+          <div class="price">Rs. 749</div>
+          <p>Golden Crispy Strips + Fries + 2 Dipping Sauces</p>
+          <a href="https://wa.me/923181678758?text=I want to order: Chicken Strips 6 Pcs" target="_blank" class="order-link"><i class="fab fa-whatsapp"></i> Order This</a>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img src="https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=600&h=400&fit=crop&q=85" alt="5 Pcs Bucket">
+        <div class="menu-card-body">
+          <h3>5 Pcs Bucket</h3>
+          <div class="price">Rs. 999</div>
+          <p>5 Pcs Crispy Fried Chicken + Fries + Drink</p>
+          <a href="https://wa.me/923181678758?text=I want to order: 5 Pcs Bucket" target="_blank" class="order-link"><i class="fab fa-whatsapp"></i> Order This</a>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img src="https://images.unsplash.com/photo-1527477396000-e27163b481c2?w=600&h=400&fit=crop&q=85" alt="Hot Wings">
+        <div class="menu-card-body">
+          <h3>Hot Wings (8 Pcs)</h3>
+          <div class="price">Rs. 849</div>
+          <p>Spicy Peri Peri or BBQ Glazed Wings — Your Choice!</p>
+          <a href="https://wa.me/923181678758?text=I want to order: Hot Wings 8 Pcs" target="_blank" class="order-link"><i class="fab fa-whatsapp"></i> Order This</a>
+        </div>
+      </div>
+
+      <div class="menu-card">
+        <img src="https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?w=600&h=400&fit=crop&q=85" alt="Loaded Fries">
+        <div class="menu-card-body">
+          <h3>Loaded Fries</h3>
+          <div class="price">Rs. 399</div>
+          <p>Crispy Fries + Melted Cheese + Jalapenos + Special Sauce</p>
+          <a href="https://wa.me/923181678758?text=I want to order: Loaded Fries" target="_blank" class="order-link"><i class="fab fa-whatsapp"></i> Order This</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Offers -->
+  <section id="offers" class="offers-section">
+    <div class="sec-head">
+      <h2 style="color:white;">Today's <span style="color:var(--yellow);">Special</span> Deals</h2>
+      <div class="sec-divider" style="background:var(--yellow);"></div>
+      <p style="color:rgba(255,255,255,0.7);">Limited Time — Order Now Before It's Gone!</p>
+    </div>
+    <div class="offers-grid">
+      <div class="offer-card">
+        <h3>Lunch Combo</h3>
+        <div class="amount">699</div>
+        <p>Zinger Burger + Fries + 500ml Drink</p>
+      </div>
+      <div class="offer-card">
+        <h3>Family Deal</h3>
+        <div class="amount">2,499</div>
+        <p>12 Pcs Chicken + 2 Large Fries + 1.5L Drink + Coleslaw</p>
+      </div>
+      <div class="offer-card">
+        <h3>Midnight Deal</h3>
+        <div class="amount">899</div>
+        <p>8 Pcs Hot Wings + Loaded Fries — Available 10 PM onwards</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery" class="gallery-section">
+    <div class="sec-head">
+      <h2>Our <span>Crispy</span> Moments</h2>
+      <div class="sec-divider"></div>
+      <p>Fresh Cooked, Every Order, Every Time</p>
+    </div>
+    <div class="gallery-grid" style="max-width:1200px;margin:0 auto;">
+      <img src="https://images.unsplash.com/photo-1513639776629-7b61b0ac49cb?w=600&h=440&fit=crop&q=85" alt="Fried Chicken">
+      <img src="https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?w=600&h=440&fit=crop&q=85" alt="Chicken Bucket">
+      <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&h=440&fit=crop&q=85" alt="Burger">
+      <img src="https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?w=600&h=440&fit=crop&q=85" alt="Fries">
+      <img src="https://images.unsplash.com/photo-1562967916-eb82221dfb92?w=600&h=440&fit=crop&q=85" alt="Strips">
+      <img src="https://images.unsplash.com/photo-1527477396000-e27163b481c2?w=600&h=440&fit=crop&q=85" alt="Wings">
+      <img src="https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=600&h=440&fit=crop&q=85" alt="Chicken">
+      <img src="https://images.unsplash.com/photo-1552332386-f8dd00dc2f85?w=600&h=440&fit=crop&q=85" alt="Meal">
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="about-section">
+    <div class="about-inner">
+      <div class="sec-head">
+        <h2>About <span>FFC</span></h2>
+        <div class="sec-divider"></div>
+      </div>
+      <p>
+        FFC is Lahore's go-to destination for fresh, crispy, and perfectly spiced fried chicken.
+        Founded by <strong style="color:white;">Sufyan Raza</strong>, every piece is marinated with our secret blend and fried fresh to order.
+        Whether it's a family dinner, a late-night craving, or a quick bite — FFC is always ready to serve you!
+      </p>
+      <div class="about-stats">
+        <div class="stat-item">
+          <div class="num">100%</div>
+          <div class="label">Fresh Every Day</div>
+        </div>
+        <div class="stat-item">
+          <div class="num">11hrs</div>
+          <div class="label">Open Daily</div>
+        </div>
+        <div class="stat-item">
+          <div class="num">Fast</div>
+          <div class="label">Home Delivery</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact + Order Form -->
+  <section id="contact" class="contact-section">
+    <div class="contact-inner">
+      <div class="contact-info">
+        <h2>Visit Us or<br>Order Now</h2>
+
+        <div class="info-row">
+          <div class="info-icon icon-red-bg"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="info-text">
+            <p>Address</p>
+            <p>Near Pak Bazaar, Chaudhary Raza Muhammad Shop Corner, Lahore, Punjab</p>
+          </div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-icon icon-green-bg"><i class="fab fa-whatsapp"></i></div>
+          <div class="info-text">
+            <p>WhatsApp / Call</p>
+            <a href="https://wa.me/923181678758" target="_blank">0318-1678758</a>
+          </div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-icon icon-blue-bg"><i class="fas fa-envelope"></i></div>
+          <div class="info-text">
+            <p>Email</p>
+            <a href="mailto:abdulrehmanraza60@gmail.com">abdulrehmanraza60@gmail.com</a>
+          </div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-icon icon-yellow-bg"><i class="fas fa-clock"></i></div>
+          <div class="info-text">
+            <p>Opening Hours</p>
+            <p>Daily: 3:00 PM – 2:00 AM</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Order Form -->
+      <div class="order-form">
+        <h3>Quick Order Form</h3>
+        <p class="sub">Send your order via WhatsApp or Email — we'll confirm shortly!</p>
+
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" id="fname" placeholder="e.g. Ali Khan" required>
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" id="fphone" placeholder="03XX-XXXXXXX" required>
+        </div>
+        <div class="form-group">
+          <label>Select Item</label>
+          <select id="fitem">
+            <option value="">-- Choose Menu Item --</option>
+            <option>10 Pcs Family Bucket – Rs. 1,899</option>
+            <option>Zinger Burger – Rs. 599</option>
+            <option>Chicken Strips 6 Pcs – Rs. 749</option>
+            <option>5 Pcs Bucket – Rs. 999</option>
+            <option>Hot Wings 8 Pcs – Rs. 849</option>
+            <option>Loaded Fries – Rs. 399</option>
+            <option>Lunch Combo – Rs. 699</option>
+            <option>Family Deal – Rs. 2,499</option>
+            <option>Custom Order</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Delivery Address / Additional Details</label>
+          <textarea id="faddress" placeholder="Your address or any special request..."></textarea>
+        </div>
+        <div class="form-btns">
+          <button class="btn-wa-form" onclick="sendWhatsApp()">
+            <i class="fab fa-whatsapp"></i> Send on WhatsApp
+          </button>
+          <button class="btn-email-form" onclick="sendEmail()">
+            <i class="fas fa-envelope"></i> Send via Email
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-top">🍗 Framan Fried Chicken — Lahore</div>
+    <p>Owner: <strong style="color:white;">Sufyan Raza</strong> &nbsp;|&nbsp; <a href="https://wa.me/923181678758">0318-1678758</a> &nbsp;|&nbsp; <a href="mailto:abdulrehmanraza60@gmail.com">abdulrehmanraza60@gmail.com</a></p>
+    <p style="margin-top:8px;">© 2026 Framan Fried Chicken — All Rights Reserved &nbsp;|&nbsp; Made with ❤️ by Abdul Rehman</p>
+  </footer>
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/923181678758" target="_blank" class="float-wa" title="Order on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <script>
+    function getFormData() {
+      const name = document.getElementById('fname').value.trim();
+      const phone = document.getElementById('fphone').value.trim();
+      const item = document.getElementById('fitem').value;
+      const address = document.getElementById('faddress').value.trim();
+      if (!name || !phone) { alert('Please enter your name and phone number.'); return null; }
+      return { name, phone, item, address };
+    }
+
+    function sendWhatsApp() {
+      const d = getFormData(); if (!d) return;
+      const msg = `*New Order – FFC Lahore*%0A%0A*Name:* ${d.name}%0A*Phone:* ${d.phone}%0A*Item:* ${d.item || 'Not selected'}%0A*Address/Notes:* ${d.address || 'N/A'}`;
+      window.open(`https://wa.me/923181678758?text=${msg}`, '_blank');
+    }
+
+    function sendEmail() {
+      const d = getFormData(); if (!d) return;
+      const subject = `New Order from ${d.name} – FFC Website`;
+      const body = `New Order – FFC Lahore\n\nName: ${d.name}\nPhone: ${d.phone}\nItem: ${d.item || 'Not selected'}\nAddress/Notes: ${d.address || 'N/A'}`;
+      window.location.href = `mailto:abdulrehmanraza60@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }
+  </script>
 </body>
 </html>
